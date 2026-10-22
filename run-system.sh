@@ -6,8 +6,11 @@ set -e
 docker build --target agent -t assignment-agent:1.0 .
 docker build --target seeder -t assignment-seeder:1.0 .
 
-docker pull postgres:17.11-alpine3.23
+docker pull postgres:latest
 docker pull docker/mcp-gateway:latest
 
 # Create network
 docker network create assignment-network
+
+# Start postgres database
+docker run -d --network assignment-network --name assignment-db postgres
