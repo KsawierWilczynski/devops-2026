@@ -13,4 +13,4 @@ docker pull docker/mcp-gateway:latest
 docker network create assignment-network
 
 # Start postgres database
-docker run -d --network assignment-network --name assignment-db postgres
+docker run -d --network assignment-network --name assignment-db -e POSTGRES_USER=assignment -e POSTGRES_PASSWORD=secret -e POSTGRES_DB=verycooldata postgres
