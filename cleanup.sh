@@ -9,4 +9,7 @@ docker rm seeder
 docker stop mcp-gateway
 docker rm mcp-gateway
 
+docker stop ai-agent
+docker rm ai-agent
+
 docker network rm assignment-network

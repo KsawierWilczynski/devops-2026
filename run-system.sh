@@ -22,3 +22,7 @@ sleep 2
 
 # Start MCP Gateway
 docker run -d --network assignment-network --name mcp-gateway -v "/var/run/docker.sock:/var/run/docker.sock" -v "./mcp_config.yaml:/mcp_config.yaml" -v "./mcp_secret.env:/run/secrets/database-url" docker/mcp-gateway --transport=sse --secrets=/run/secrets/database-url --allow-unauthenticated --servers=cockroachdb --tools=execute_query --config=/mcp_config.yaml
+sleep 2
+
+# Start AI Agent
+docker run -d --network assignment-network --name ai-agent -v "./secret.ollama-api-key:/run/secrets/openai-api-key" -e MCP_SERVER_URL=http://mcp-gateway:8811/sse -e DATABASE_DIALECT=PostgreSQL -e QUESTION="What are the top 3 albums by sales?" -e OPENAI_API_BASE_URL=https://ollama.com/v1 -e OPENAI_MODEL_NAME=gpt-oss:20b assignment-agent:1.0
