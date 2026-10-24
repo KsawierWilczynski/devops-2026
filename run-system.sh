@@ -17,4 +17,4 @@ docker run -d --network assignment-network --name assignment-db -p 5432:5432 -e 
 sleep 2
 
 # Start seeder
-docker run -d --network assignment-network --name seeder -e SQLITE_FILE=/app/Chinook.db -e DATABASE_URL=postgres://assignment:secret@assignment-db:5432/verycooldata assignment-seeder:1.0
+docker run -d --network assignment-network --name seeder -v "./Chinook.db:/app/Chinook.db" -e SQLITE_FILE=/app/Chinook.db -e DATABASE_URL=postgres://assignment:secret@assignment-db:5432/verycooldata assignment-seeder:1.0
